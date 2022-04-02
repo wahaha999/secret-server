@@ -47,11 +47,14 @@ server.app.use(
   }
 );
 
-mongoose.connect(process.env.MONGODB_URL || "", () => {
+const port = process.env.APP_PORT || 3000;
+const mongodb_url = process.env.MONGODB_URL || "";
+
+mongoose.connect(mongodb_url, () => {
   console.log("connected to database");
 });
 
 // make server listen on some port
-((port = process.env.APP_PORT || 5000) => {
+(() => {
   server.app.listen(port, () => console.log(`> Listening on port ${port}`));
 })();
