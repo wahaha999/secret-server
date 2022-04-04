@@ -47,8 +47,9 @@ server.app.use(
   }
 );
 
-mongoose.connect(process.env.MONGODB_URL || "", () => {
-  console.log("connected to database");
+mongoose.connect(process.env.MONGODB_URL || "", (err) => {
+  if (err) console.log(err);
+  else console.log("mongdb is connected");
 });
 
 // make server listen on some port
